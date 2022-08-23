@@ -1,6 +1,10 @@
 <h1 align="center">
-  ✅ TODO ✅
+  ✅ TODO's ✅
 </h1>
+
+Esta aplicação tem como objetivo disponibilizar uma listagem de tarefas/afazeres individualmente para uma variedade de usuários. Desta forma ela irá apresentar uma lista de usuarios e ao clicar em cada um será mostrado a lista de "todo's" de cada um. O usuário poderá adicionar um item a lista como também marcar como concluido ou pendente.
+
+Está sendo consumida a API pública https://jsonplaceholder.typicode.com/ para disponibilizar a lista de tarefas.
 
 ## Configurações Iniciais
 
