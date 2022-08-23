@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import { UserItem } from './components/UserItem';
+import { TodosModal } from './components/TodosModal';
 
+// Tipagem dos dados do usuário
 export type userData = {
     id: number,
     name: string,
@@ -15,7 +16,8 @@ export type userData = {
     company: any,
 }
 
-type todoData = {
+// Tipagem dos TODO's
+export type todoData = {
     userId: number,
     id: number,
     title: string,
@@ -23,32 +25,24 @@ type todoData = {
 }
 
 function App() {
-    const [users, setUsers] = useState<userData[]>([]);
     const [todos, setTodos] = useState<todoData[]>([]);
+    const [user, setUser] = useState<userData>({} as userData);
+    const [users, setUsers] = useState<userData[]>([]);
+    const [openModal, setOpenModal] = useState<boolean>(false);
 
-    const listUsers = () => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then((res) => res.json())
-        .then((users) => {
-            setUsers(users);
-        });
-    }
-
-    const listTodos = () => {
+    // Lista todos os usuarios e todos os Todos
+    useEffect(()=>{
         fetch('https://jsonplaceholder.typicode.com/todos')
         .then((res) => res.json())
         .then((todos) => {
             setTodos(todos);
         });
-    }
-
-    useEffect(()=>{
-        listUsers();
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then((res) => res.json())
+        .then((users) => {
+            setUsers(users);
+        });
     },[])
-
-    useEffect(()=>{
-        console.log(users)
-    },[users])
 
   return (
     <div className="App">
@@ -57,12 +51,15 @@ function App() {
             <Col sm={6} className={'usersList'}>
                 {users.map((user) => {
                     return(
-                        <UserItem user={user}/>
+                        <UserItem user={user} setOpenModal={setOpenModal} setUser={setUser}/>
                     )
                 })}
             </Col>
         </Row>
       </Container>
+      {openModal &&
+        <TodosModal todos={todos} user={user} setOpenModal={setOpenModal} setTodos={setTodos}/>
+      }
     </div>
   );
 }
