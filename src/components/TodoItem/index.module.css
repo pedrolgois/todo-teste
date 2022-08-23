@@ -29,3 +29,14 @@
 .todo.true:hover{
     opacity: 1;
 }
+
+@media(max-width: 768px){
+    .todo h2{
+        font-size: 18px;
+    }
+
+    .todo input{
+        width: 15px;
+        height: 15px;
+    }
+}

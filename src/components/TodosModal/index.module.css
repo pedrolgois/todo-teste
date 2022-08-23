@@ -116,3 +116,16 @@
     margin-left: 12px;
     border-radius: 5px;
 }
+
+
+@media(max-width: 768px){
+    .modal .container{
+        padding: 2.5rem 1rem;
+    }
+    .add{
+        padding: 1rem .5rem;
+    }
+    .filter{
+        font-size: 15px;
+    }
+}
